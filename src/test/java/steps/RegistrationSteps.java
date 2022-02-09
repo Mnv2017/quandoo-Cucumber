@@ -1,6 +1,5 @@
 package steps;
 
-import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import pages.HomePage;
@@ -8,6 +7,7 @@ import pages.LoginPage;
 import pages.RegistrationPage;
 
 import static com.codeborne.selenide.Condition.visible;
+import static com.codeborne.selenide.Selenide.page;
 
 public class RegistrationSteps {
     HomePage homePage;
@@ -16,12 +16,12 @@ public class RegistrationSteps {
 
     @When("Open Registration page")
     public void navigateToRegistrationPage() {
-        homePage = new HomePage().openPage();
+        homePage = page(HomePage.class).openPage();
         registrationPage = homePage.clickOnSignUp();
         registrationPage.createAccountBtn().shouldBe(visible);
     }
 
-    @And("Fill registration form with valid data")
+    @When("Fill registration form with valid data")
     public void fillAndConfirmRegistrationForm() {
         registrationPage.signIn();
         String p = RegistrationPage.passValue;
@@ -33,7 +33,7 @@ public class RegistrationSteps {
         homePage.getAccountIcon().shouldBe(visible);
     }
 
-    @And("It is possible to log in to this account")
+    @Then("It is possible to log in to this account")
     public void logInIntoNewAccount() {
         loginPage = homePage.clickOnLogout().clickOnLogin();
         loginPage.loginUser(RegistrationPage.emailValue, RegistrationPage.passValue);

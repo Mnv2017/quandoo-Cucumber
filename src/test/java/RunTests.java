@@ -6,10 +6,7 @@ import org.junit.runner.RunWith;
 @CucumberOptions(
         features = "src/test/resources/features",
         glue = {"steps"},
-//        tags = "@loginPage",// "not @loginPage" - исключая
-//        tags = "@invalidData",
-//        tags = "@regTest",
-//        tags = "@addContactValidData",
+        tags = "@negative",
         plugin = {
                 "pretty",
                 "json:build/cucumber-report/cucumber.json"

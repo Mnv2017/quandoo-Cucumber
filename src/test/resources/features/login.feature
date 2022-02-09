@@ -13,13 +13,16 @@ Feature: Login
       | email           | password    |
       | nnn123@mail.com |  Qwerty123$ |
 
-
+    @negative
   Scenario Outline: Login with invalid data
     And Fill the login form with email <email> and password <password>
     Then Error message appears
+    """
+    <errorMesage>
+    """
     Examples: This is an invalid data
-      | email           | password    |
-      | nnn123@mail     |  Qwerty123$ |
-      | nnn123@mail.com |  erty123$   |
-      | nnn123@mail.com |             |
-      |                 |  erty123$   |
+      | email           | password    | errorMesage                       |
+      | nnn123@mail     |  Qwerty123$ | Enter valid username or password  |
+      | nnn123@mail.com |  erty123$   | Enter valid username or password  |
+      | nnn123@mail.com |             | Enter valid username or password  |
+      |                 |  erty123$   | Enter valid username or password  |

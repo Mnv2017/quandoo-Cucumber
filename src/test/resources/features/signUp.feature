@@ -2,7 +2,6 @@ Feature: Sign up
   I am registering on the site
   To create an account
 
-  @regTest
   Scenario: Successful sign up
     Given Open Home page
     When Open Registration page

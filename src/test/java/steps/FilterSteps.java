@@ -1,6 +1,5 @@
 package steps;
 
-import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -23,7 +22,6 @@ public class FilterSteps {
     public void openBerlinPage() {
         homePage = page(HomePage.class);
         berlinPage = new HomePage().navigateToBerlinPage();
-//        homePage.acceptCookies();
     }
 
     @When("Click on TopRate button")
@@ -49,7 +47,7 @@ public class FilterSteps {
         Assert.assertEquals(berlinPage.getResultsCount(), numberOfAfricanRestaurants);
     }
 
-    @And("All African restaurants are selected")
+    @Then("All African restaurants are selected")
     public void checkAllAfricanSelected() {
         for (int i = 2; i < numberOfAfricanRestaurants + 1; i++) {
             berlinPage.africanRestaurant(i).shouldHave(exactText("African"));

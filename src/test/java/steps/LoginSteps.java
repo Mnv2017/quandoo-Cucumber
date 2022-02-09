@@ -1,6 +1,6 @@
 package steps;
 
-import io.cucumber.java.en.And;
+import io.cucumber.docstring.DocString;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import pages.HomePage;
@@ -20,7 +20,7 @@ public class LoginSteps {
         loginPage.logInBtn().shouldBe(exist);
     }
 
-    @And("^Fill the login form with email (.*) and password (.*)$")
+    @When("^Fill the login form with email (.*) and password (.*)$")
     public void fillLoginFormAndConfirm(String email, String password){
         loginPage.loginUser(email,password);
     }
@@ -32,7 +32,7 @@ public class LoginSteps {
     }
 
     @Then(("Error message appears"))
-    public void isErrorMessageAppears(){
-        loginPage.getErrorMessage().shouldHave(text("Enter valid username or password"));
+    public void isErrorMessageAppears(DocString docString){
+        loginPage.getErrorMessage().shouldHave(text(docString.getContent()));
     }
 }

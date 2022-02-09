@@ -4,9 +4,8 @@ import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.By;
 
+import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.*;
-import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
-import static pages.HomePage.BASE_URL;
 
 public class RestaurantPage {
 
@@ -15,12 +14,7 @@ public class RestaurantPage {
     private static By endOfPage = By.cssSelector("[data-qa=make-enquiry-button]");
     private static By ratingInfo = By.cssSelector(("[data-qa=merchant-rating]"));
     private static By ratingNumber = By.cssSelector(("[data-qa=reviews-score]>span.r91qah-1.DYnWo"));
-
-    public RestaurantPage openPage() {
-        open(BASE_URL + "en/berlin");
-        getWebDriver().manage().window().maximize();
-        return page(RestaurantPage.class);
-    }
+    private static By makeAnEnquiryBtn = By.cssSelector("[data-qa=make-enquiry-button]");
 
     public RestaurantPage initLocators() {
         $(endOfPage).scrollIntoView(false);
@@ -32,4 +26,9 @@ public class RestaurantPage {
         return ratingInfoBlocks.get(i).find(ratingNumber);
     }
 
+    public EnquiryPage clickOnEnquiryBtn(){
+        $(endOfPage).scrollIntoView(false);
+        $(makeAnEnquiryBtn).shouldBe(visible).click();
+        return page(EnquiryPage.class);
+    }
 }
