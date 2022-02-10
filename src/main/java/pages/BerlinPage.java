@@ -3,9 +3,11 @@ package pages;
 import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.By;
 
+import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selectors.byXpath;
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.page;
+import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
+import static pages.HomePage.BASE_URL;
 
 public class BerlinPage {
 
@@ -18,6 +20,12 @@ public class BerlinPage {
     private static By firstEl = By.xpath("//form[@id='searchForm']/div/div/div/div[2]/li/div/span[2]");
     private static By checkBox = By.cssSelector("[data-cuisine-id='03c331d2-8f5f-4d45-8731-e5e98ebfee00']");
     private static By africanCuisineFilter = By.xpath("//div[@data-qa='filter-cuisine-label-03c331d2-8f5f-4d45-8731-e5e98ebfee00']");
+
+    public BerlinPage openPage(){
+        open(BASE_URL + "en/berlin");
+        getWebDriver().manage().window().maximize();
+        return page(BerlinPage.class);
+    }
 
     public BerlinPage clickOnTopRate() {
         $(topRateButton).click();
@@ -44,12 +52,12 @@ public class BerlinPage {
     }
 
     public RestaurantPage clickOnFirstRestaurant() {
-        $(firstRestaurant).click();
+        $(firstRestaurant).shouldBe(visible).click();
         return new RestaurantPage();
     }
 
     public String getFirstRestRating() {
-        String s = $(firstRestaurantRating).getText();
+        String s = $(firstRestaurantRating).shouldBe(visible).getText();
         return s.substring(0, s.length() - 2);
     }
 

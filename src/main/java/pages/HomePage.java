@@ -12,6 +12,7 @@ public class HomePage {
     public static final String BASE_URL = "https://www.quandoo.de/";
 
     private static By accCookies = By.id("CybotCookiebotDialogBodyLevelButtonLevelOptinAllowAll");
+    private static By wrapper = By.cssSelector(".wrapper");
 
     private static By berlinLnk = By.xpath("//h4[text()='Berlin']");
     private static By logInBtn = By.cssSelector("[data-qa=header-login-btn]");
@@ -26,8 +27,8 @@ public class HomePage {
     }
 
     public void acceptCookies() {
-        if ($(accCookies).exists()) {
-            $(accCookies).click();
+        if ($(wrapper).exists()) {
+            $(accCookies).shouldBe(visible).click();
         }
     }
 

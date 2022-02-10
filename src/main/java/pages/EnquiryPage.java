@@ -4,6 +4,7 @@ import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.By;
 
 import static com.codeborne.selenide.Condition.exist;
+import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.page;
 
@@ -15,6 +16,9 @@ public class EnquiryPage {
     private static By firstName = By.cssSelector("[data-qa=input-first-name]");
     private static By lastName = By.cssSelector("[data-qa=input-last-name]");
     private static By phone = By.cssSelector("[data-qa=input-phone]");
+    private static By timeSelect = By.cssSelector("[data-qa=widget-time-picker-end] select");
+    private static By message = By.cssSelector("[data-qa=message]");
+    private static By iAgree = By.cssSelector("#checkoutTermsCheckbox [data-qa=checkbox-icon-box]");
 
     private static Object[] errTypes = new Object[5];
 
@@ -27,10 +31,13 @@ public class EnquiryPage {
     }
 
     public EnquiryPage fillEnquiryForm(String emailV, String firstNameV, String lastNameV, String phoneV) {
-        $(email).setValue(emailV).pressTab();
-        $(firstName).setValue(firstNameV).pressTab();
-        $(lastName).setValue(lastNameV).pressTab();
-        $(phone).setValue(phoneV).pressTab();
+        $(timeSelect).selectOptionContainingText("11:30 pm");
+        $(email).shouldBe(visible).setValue(emailV).pressTab();
+        $(firstName).shouldBe(visible).setValue(firstNameV).pressTab();
+        $(lastName).shouldBe(visible).setValue(lastNameV).pressTab();
+        $(phone).shouldBe(visible).setValue(phoneV).pressTab();
+        $(message).shouldBe(visible).setValue("It is a message");
+        $(iAgree).shouldBe(exist).click();
         return this;
     }
 

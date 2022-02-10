@@ -20,7 +20,7 @@ public class RatingSteps {
         firstRestaurantRating = berlinPage.getFirstRestRating();
     }
 
-    @When("Click on the restaurant")
+    @When("Click on the first restaurant")
     public void clickOnFirstRestaurant() {
         restaurantPage = berlinPage.clickOnFirstRestaurant().initLocators();
     }

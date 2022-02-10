@@ -12,16 +12,21 @@ import static com.codeborne.selenide.Condition.selected;
 import static com.codeborne.selenide.Selenide.page;
 
 public class FilterSteps {
-    HomePage homePage;
-    BerlinPage berlinPage;
+    HomePage homePage = page(HomePage.class);
+    BerlinPage berlinPage = page(BerlinPage.class);
 
     public static int numberOfRestaurantsBefore;
     public static int numberOfAfricanRestaurants;
 
+    @Given("Open Berlin page")
+    public void openBerlinPage(){
+        berlinPage.openPage();
+        homePage.acceptCookies();
+    }
+
     @Given("Navigate to Berlin page")
-    public void openBerlinPage() {
-        homePage = page(HomePage.class);
-        berlinPage = new HomePage().navigateToBerlinPage();
+    public void navigateToBerlinPage() {
+        berlinPage = homePage.navigateToBerlinPage();
     }
 
     @When("Click on TopRate button")

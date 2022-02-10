@@ -1,12 +1,11 @@
 Feature: Enquiry
-  I make an enquiry
+  I create an enquiry
   To order to make a special request
 
   @negative
   Scenario Outline: Create a enquiry with invalid data
-    Given Open Home page
-    And Navigate to Berlin page
-    And Click on the restaurant
+    Given Open Berlin page
+    And Click on the first restaurant
     When Click on Make an enquiry button
     And Fill Enquiry form fields with invalid data
       | email   | firstName   | lastName   | phone   |
@@ -17,7 +16,6 @@ Feature: Enquiry
     <errorMsg>
     """
     Examples: This is an invalid data
-
       | email         | firstName | lastName | phone      | num | errorMsg                                        |
       | abb21@        | Martin    | King     | 1621623456 | 1   | Wrong format. Please enter valid email address. |
       | abb21@mail.ru |           | King     | 1621623456 | 2   | Enter first name                                |
