@@ -4,7 +4,7 @@ This is the web test automation project for testing https://www.quandoo.de/en we
 
 ## Features
 
-Project has 5 feature-files which are located in directory:
+Project has 5 feature files which are located in directory:
 
 `/src/test/resources/features/`
 
