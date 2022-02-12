@@ -21,4 +21,4 @@ Feature: Enquiry
       | abb21@mail.ru |           | King     | 1621623456 | 2   | Enter first name                                |
       | abb21@mail.ru | Martin    |          | 1621623456 | 3   | Enter last name                                 |
       | abb21@mail.ru | Martin    | King     | 1234phon   | 4   | This field must contain digits only             |
-      | abb21@mail.ru | Martin    | King     | 1234567    | 5   | Enter valid phone number                        |
+      | abb21@mail.ru | Martin    | King     | 1234567    | 4   | Enter valid phone number                        |
